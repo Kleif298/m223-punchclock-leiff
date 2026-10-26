@@ -3,6 +3,7 @@ package ch.zli.m223.controller;
 import java.util.List;
 
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.Consumes;
 
 import jakarta.ws.rs.GET;
@@ -19,6 +20,7 @@ import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import ch.zli.m223.dto.EntryDto;
 import ch.zli.m223.model.Entry;
 import ch.zli.m223.service.EntryService;
 
@@ -40,8 +42,8 @@ public class EntryController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Creates a new entry.", description = "Creates a new entry and returns the newly added entry.")
-    public Entry create(Entry entry) {
-       return entryService.createEntry(entry);
+    public Entry create(@Valid EntryDto dto) {
+        return entryService.createEntry(dto.toEntity());
     }
 
     @PUT
@@ -49,8 +51,8 @@ public class EntryController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Updates an entry.", description = "Updates the entry with the given id and returns it.")
-    public Response update(@PathParam("id") Long id, Entry entry) {
-        Entry updated = entryService.updateEntry(id, entry);
+    public Response update(@PathParam("id") Long id, @Valid EntryDto dto) {
+        Entry updated = entryService.updateEntry(id, dto.toEntity());
         if (updated == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
