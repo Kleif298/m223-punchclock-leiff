@@ -10,6 +10,7 @@
         <script src="script.js" type="application/javascript"></script>
     </head>
     <body>
+        <h2>Create entry</h2>
         <form id="createEntryForm">
             <label for="checkIn">Check in</label>
             <input type="date" name="checkInDate" id="checkIn" required>
@@ -17,19 +18,35 @@
             <label for="checkOut">Check out</label>
             <input type="date" name="checkOutDate" id="checkOut" required>
             <input type="time" name="checkOutTime" required>
+            <input type="submit" value="Create" />
+        </form>
+
+        <h2>Edit entry</h2>
+        <form id="editEntryForm">
+            <label for="editId">ID</label>
+            <input type="text" name="id" id="editId" readonly required>
+            <label for="editCheckIn">Check in</label>
+            <input type="date" name="checkInDate" id="editCheckIn" required>
+            <input type="time" name="checkInTime" required>
+            <label for="editCheckOut">Check out</label>
+            <input type="date" name="checkOutDate" id="editCheckOut" required>
+            <input type="time" name="checkOutTime" required>
             <input type="submit" value="Save" />
         </form>
+
+        <h2>Entries</h2>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Check in</th>
                     <th>Check out</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="entryDisplay">
                 <tr>
-                    <td colspan="3">Loading...</td>
+                    <td colspan="4">Loading...</td>
                 </tr>
             </tbody>
         </table>

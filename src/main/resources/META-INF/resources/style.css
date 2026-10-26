@@ -11,3 +11,7 @@ input[type='submit'], table {
 table {
   width: 40rem;
 }
+
+td button {
+  display: inline;
+}
