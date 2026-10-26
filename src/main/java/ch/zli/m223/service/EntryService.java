@@ -23,4 +23,13 @@ public class EntryService {
     public List<Entry> findAll() {
         return entryRepository.listAll();
     }
+
+    public id patchEntry(Long id, Entry partialEntry) {
+        Entry existing = entryRepository.findById(id);
+        if (existing == null) {
+            return null;
+        }
+
+        return existing;
+    }
 }
