@@ -38,4 +38,19 @@ public class EntryController {
        return entryService.createEntry(entry);
     }
 
+    @PATCH
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "", description = "")
+    public Response edit(@PathParam("id") long id, Entry partialEntry) {
+        Entry updatedEntry = entryService.patchEntry;
+
+        if (updatedEntry == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        
+        return Response.ok(updatedEntry).build();
+    }
+
 }
