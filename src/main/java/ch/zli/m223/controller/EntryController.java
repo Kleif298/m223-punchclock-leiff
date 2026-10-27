@@ -34,16 +34,16 @@ public class EntryController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Operation(summary = "Index all Entries.", description = "Returns a list of all entries.")
-    public List<Entry> index() {
-        return entryService.findAll();
+    public List<EntryDto> index() {
+        return entryService.findAll().stream().map(EntryDto::fromEntity).toList();
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Creates a new entry.", description = "Creates a new entry and returns the newly added entry.")
-    public Entry create(@Valid EntryDto dto) {
-        return entryService.createEntry(dto.toEntity());
+    public EntryDto create(@Valid EntryDto dto) {
+        return EntryDto.fromEntity(entryService.createEntry(dto));
     }
 
     @PUT
@@ -52,11 +52,11 @@ public class EntryController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "Updates an entry.", description = "Updates the entry with the given id and returns it.")
     public Response update(@PathParam("id") Long id, @Valid EntryDto dto) {
-        Entry updated = entryService.updateEntry(id, dto.toEntity());
+        Entry updated = entryService.updateEntry(id, dto);
         if (updated == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
-        return Response.ok(updated).build();
+        return Response.ok(EntryDto.fromEntity(updated)).build();
     }
 
     @DELETE
