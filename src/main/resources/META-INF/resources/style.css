@@ -1,17 +1,62 @@
-input {
-  display: block;
-  width: 20rem;
-  box-sizing: border-box;
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 44rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-input[type='submit'], table {
-  margin-top: 1rem;
+form {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.datetime {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input, select {
+  box-sizing: border-box;
+  padding: 0.4rem;
+  font: inherit;
+}
+
+input[type='text'], select {
+  width: 100%;
+}
+
+select[multiple] {
+  min-height: 5rem;
+}
+
+input[readonly] {
+  background: #f0f0f0;
+}
+
+input[type='submit'] {
+  grid-column: 2;
+  justify-self: start;
+  padding: 0.4rem 1.5rem;
+  cursor: pointer;
 }
 
 table {
-  width: 40rem;
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
 }
 
 td button {
-  display: inline;
+  margin-right: 0.4rem;
 }

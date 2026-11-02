@@ -4,8 +4,29 @@ let entries = [];
 const readEntry = (formData) => {
     return {
         checkIn: `${formData.get('checkInDate')}T${formData.get('checkInTime')}`,
-        checkOut: `${formData.get('checkOutDate')}T${formData.get('checkOutTime')}`
+        checkOut: `${formData.get('checkOutDate')}T${formData.get('checkOutTime')}`,
+        categoryId: formData.get('categorySelect') ? Number(formData.get('categorySelect')) : null,
+        tagIds: formData.getAll('tagIds').map(Number)
     };
+};
+
+const fillSelect = (selector, items, withEmptyOption) => {
+    document.querySelectorAll(selector).forEach((select) => {
+        select.innerHTML = '';
+        if (withEmptyOption) {
+            select.appendChild(new Option('-- none --', ''));
+        }
+        items.forEach((item) => select.appendChild(new Option(item.title, item.id)));
+    });
+};
+
+const loadCategoriesAndTags = () => {
+    fetch(`${URL}/categories`)
+        .then((result) => result.json())
+        .then((categories) => fillSelect('.categorySelect', categories, true));
+    fetch(`${URL}/tags`)
+        .then((result) => result.json())
+        .then((tags) => fillSelect('.tagSelect', tags, false));
 };
 
 const createEntry = (e) => {
@@ -54,6 +75,11 @@ const startEdit = (entry) => {
     form.elements.checkInTime.value = inTime.slice(0, 5);
     form.elements.checkOutDate.value = outDate;
     form.elements.checkOutTime.value = outTime.slice(0, 5);
+    form.elements.categorySelect.value = entry.categoryId ?? '';
+    const tagIds = (entry.tagIds ?? []).map(String);
+    Array.from(form.elements.tagIds.options).forEach((option) => {
+        option.selected = tagIds.includes(option.value);
+    });
 };
 
 const deleteEntry = (id) => {
@@ -108,5 +134,6 @@ const renderEntries = () => {
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#createEntryForm').addEventListener('submit', createEntry);
     document.querySelector('#editEntryForm').addEventListener('submit', updateEntry);
+    loadCategoriesAndTags();
     indexEntries();
 });

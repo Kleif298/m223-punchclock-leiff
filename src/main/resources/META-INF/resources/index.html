@@ -13,11 +13,19 @@
         <h2>Create entry</h2>
         <form id="createEntryForm">
             <label for="checkIn">Check in</label>
-            <input type="date" name="checkInDate" id="checkIn" required>
-            <input type="time" name="checkInTime" required>
+            <div class="datetime">
+                <input type="date" name="checkInDate" id="checkIn" required>
+                <input type="time" name="checkInTime" required>
+            </div>
             <label for="checkOut">Check out</label>
-            <input type="date" name="checkOutDate" id="checkOut" required>
-            <input type="time" name="checkOutTime" required>
+            <div class="datetime">
+                <input type="date" name="checkOutDate" id="checkOut" required>
+                <input type="time" name="checkOutTime" required>
+            </div>
+            <label for="createCategory">Category</label>
+            <select name="categorySelect" id="createCategory" class="categorySelect"></select>
+            <label for="createTags">Tags</label>
+            <select name="tagIds" id="createTags" class="tagSelect" multiple></select>
             <input type="submit" value="Create" />
         </form>
 
@@ -26,11 +34,19 @@
             <label for="editId">ID</label>
             <input type="text" name="id" id="editId" readonly required>
             <label for="editCheckIn">Check in</label>
-            <input type="date" name="checkInDate" id="editCheckIn" required>
-            <input type="time" name="checkInTime" required>
+            <div class="datetime">
+                <input type="date" name="checkInDate" id="editCheckIn" required>
+                <input type="time" name="checkInTime" required>
+            </div>
             <label for="editCheckOut">Check out</label>
-            <input type="date" name="checkOutDate" id="editCheckOut" required>
-            <input type="time" name="checkOutTime" required>
+            <div class="datetime">
+                <input type="date" name="checkOutDate" id="editCheckOut" required>
+                <input type="time" name="checkOutTime" required>
+            </div>
+            <label for="editCategory">Category</label>
+            <select name="categorySelect" id="editCategory" class="categorySelect"></select>
+            <label for="editTags">Tags</label>
+            <select name="tagIds" id="editTags" class="tagSelect" multiple></select>
             <input type="submit" value="Save" />
         </form>
 
