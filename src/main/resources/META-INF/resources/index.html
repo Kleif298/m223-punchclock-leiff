@@ -50,6 +50,48 @@
             <input type="submit" value="Save" />
         </form>
 
+        <h2>Categories</h2>
+        <form id="createCategoryForm">
+            <label for="categoryTitle">Title</label>
+            <input type="text" name="title" id="categoryTitle" required>
+            <input type="submit" value="Add" />
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="categoryDisplay">
+                <tr>
+                    <td colspan="3">Loading...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Tags</h2>
+        <form id="createTagForm">
+            <label for="tagTitle">Title</label>
+            <input type="text" name="title" id="tagTitle" required>
+            <input type="submit" value="Add" />
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tagDisplay">
+                <tr>
+                    <td colspan="3">Loading...</td>
+                </tr>
+            </tbody>
+        </table>
+
         <h2>Entries</h2>
         <table>
             <thead>
@@ -57,12 +99,14 @@
                     <th>ID</th>
                     <th>Check in</th>
                     <th>Check out</th>
+                    <th>Category</th>
+                    <th>Tags</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="entryDisplay">
                 <tr>
-                    <td colspan="4">Loading...</td>
+                    <td colspan="6">Loading...</td>
                 </tr>
             </tbody>
         </table>
