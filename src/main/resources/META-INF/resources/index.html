@@ -13,11 +13,19 @@
         <h2>Create entry</h2>
         <form id="createEntryForm">
             <label for="checkIn">Check in</label>
-            <input type="date" name="checkInDate" id="checkIn" required>
-            <input type="time" name="checkInTime" required>
+            <div class="datetime">
+                <input type="date" name="checkInDate" id="checkIn" required>
+                <input type="time" name="checkInTime" required>
+            </div>
             <label for="checkOut">Check out</label>
-            <input type="date" name="checkOutDate" id="checkOut" required>
-            <input type="time" name="checkOutTime" required>
+            <div class="datetime">
+                <input type="date" name="checkOutDate" id="checkOut" required>
+                <input type="time" name="checkOutTime" required>
+            </div>
+            <label for="createCategory">Category</label>
+            <select name="categorySelect" id="createCategory" class="categorySelect"></select>
+            <label for="createTags">Tags</label>
+            <select name="tagIds" id="createTags" class="tagSelect" multiple></select>
             <input type="submit" value="Create" />
         </form>
 
@@ -26,13 +34,63 @@
             <label for="editId">ID</label>
             <input type="text" name="id" id="editId" readonly required>
             <label for="editCheckIn">Check in</label>
-            <input type="date" name="checkInDate" id="editCheckIn" required>
-            <input type="time" name="checkInTime" required>
+            <div class="datetime">
+                <input type="date" name="checkInDate" id="editCheckIn" required>
+                <input type="time" name="checkInTime" required>
+            </div>
             <label for="editCheckOut">Check out</label>
-            <input type="date" name="checkOutDate" id="editCheckOut" required>
-            <input type="time" name="checkOutTime" required>
+            <div class="datetime">
+                <input type="date" name="checkOutDate" id="editCheckOut" required>
+                <input type="time" name="checkOutTime" required>
+            </div>
+            <label for="editCategory">Category</label>
+            <select name="categorySelect" id="editCategory" class="categorySelect"></select>
+            <label for="editTags">Tags</label>
+            <select name="tagIds" id="editTags" class="tagSelect" multiple></select>
             <input type="submit" value="Save" />
         </form>
+
+        <h2>Categories</h2>
+        <form id="createCategoryForm">
+            <label for="categoryTitle">Title</label>
+            <input type="text" name="title" id="categoryTitle" required>
+            <input type="submit" value="Add" />
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="categoryDisplay">
+                <tr>
+                    <td colspan="3">Loading...</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Tags</h2>
+        <form id="createTagForm">
+            <label for="tagTitle">Title</label>
+            <input type="text" name="title" id="tagTitle" required>
+            <input type="submit" value="Add" />
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tagDisplay">
+                <tr>
+                    <td colspan="3">Loading...</td>
+                </tr>
+            </tbody>
+        </table>
 
         <h2>Entries</h2>
         <table>
@@ -41,12 +99,14 @@
                     <th>ID</th>
                     <th>Check in</th>
                     <th>Check out</th>
+                    <th>Category</th>
+                    <th>Tags</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="entryDisplay">
                 <tr>
-                    <td colspan="4">Loading...</td>
+                    <td colspan="6">Loading...</td>
                 </tr>
             </tbody>
         </table>

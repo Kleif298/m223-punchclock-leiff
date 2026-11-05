@@ -136,7 +136,7 @@ classDiagram
 
 ```mermaid
 erDiagram
-    CATEGORY ||--o{ ENTRY : "kategorisiert"
+    CATEGORY ||o--o{ ENTRY : "kategorisiert"
     ENTRY ||--o{ ENTRY_TAG : "hat"
     TAG ||--o{ ENTRY_TAG : "markiert"
 
