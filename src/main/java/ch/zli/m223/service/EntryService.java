@@ -12,7 +12,7 @@ import ch.zli.m223.repository.EntryRepository;
 @ApplicationScoped
 public class EntryService {
     @Inject
-    private EntryRepository entryRepository;
+    EntryRepository entryRepository;
 
     @Transactional
     public Entry createEntry(Entry entry) {
@@ -22,5 +22,22 @@ public class EntryService {
 
     public List<Entry> findAll() {
         return entryRepository.listAll();
+    }
+
+    @Transactional
+    public Entry updateEntry(Long id, Entry entry) {
+        Entry existing = entryRepository.findById(id);
+        if (existing == null) {
+            return null;
+        }
+        existing.setCheckIn(entry.getCheckIn());
+        existing.setCheckOut(entry.getCheckOut());
+        // Kein persist nötig: die Entity ist managed und wird beim Commit gespeichert
+        return existing;
+    }
+
+    @Transactional
+    public boolean deleteEntry(Long id) {
+        return entryRepository.deleteById(id);
     }
 }
